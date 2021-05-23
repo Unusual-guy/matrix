@@ -2,10 +2,7 @@
 #include <stdio.h>
 #include "matrix.h"
 
-#include <locale.h> // библиотека для локализации
-
-
-void mx_free(TMatrix *m) {
+void mx_free(TMatrix* m) {
 	if (m != NULL)
 		if (m->a != NULL) {
 			free(m->a);
@@ -13,7 +10,7 @@ void mx_free(TMatrix *m) {
 		}
 }
 
-void mx_print(TMatrix *m) {
+void mx_print(TMatrix* m) {
 	unsigned int i, j;
 
 	if (m != NULL) {
@@ -27,9 +24,9 @@ void mx_print(TMatrix *m) {
 	}
 }
 
-TMatrix *mx_identity(unsigned int n) {
+TMatrix* mx_identity(unsigned int n) {
 	unsigned int i, j;
-	TMatrix *m = NULL;
+	TMatrix* m = NULL;
 
 	m = (TMatrix*)malloc(sizeof(TMatrix));
 	if (m != NULL) {
@@ -49,24 +46,28 @@ TMatrix *mx_identity(unsigned int n) {
 	return m;
 }
 
-void mx_det(int N) {
-    FILE* file;
-    unsigned int k, l;
-    int* x;
-    int array[N][N];
-    setlocale(LC_ALL, "Rus");
+void mx_det(int m) {
+	FILE* file;
+	unsigned int k, l;
+	int* x, e;
+	int det[11];
+	file = fopen("C:/Users/123/Desktop/input.txt", "r");
 
-    file = fopen("C:/Users/123/Desktop/input.txt", "r");
+    // size search
+    if (k = 0) fscanf(file, "%d", &det[11]);
+	e = det[10];
+	int N = e;
+	int array[N][N];
 
-    for (k = 1; k < 4; k++) {
-        for (l = 1; l < 4; l++) {
+
+    // calculation the determinant
+	for (k = 0; k < 3; k++) {
+        for (l = 0; l < 3; l++) {
             fscanf(file, "%d", &array[k][l]);
             printf("%d", array[k][l]);
-
-        }
-        printf("\n");
-    }
-    x = (array[1][1] * array[2][2] * array[3][3]) + (array[2][1] * array[3][2] * array[1][3]) + (array[3][1] * array[1][2] * array[2][3]) - (array[1][3] * array[2][2] * array[3][1] + array[2][3] * array[3][2] * array[1][1] + array[3][3] * array[1][2] * array[2][1]);
-    printf("Определитель равен:");
-    printf("%d",x);
+		}
+		printf("\n");
+	}
+	x = (array[0][0] * array[1][1] * array[2][2]) + (array[1][0] * array[2][1] * array[0][2]) + (array[2][0] * array[0][1] * array[1][2]) - (array[0][2] * array[1][1] * array[2][0] + array[1][2] * array[2][1] * array[0][0] + array[2][2] * array[0][1] * array[1][0]);
+    printf("%d", x);
 }
