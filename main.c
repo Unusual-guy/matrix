@@ -3,19 +3,15 @@
 #include <stdlib.h>
 #include "matrix.c"
 
-#define N 4// размер матрицы + 1
 #define BUFFER_SIZE 5
 
-
-
-
-TMatrix *mx_from_file(char *filename) {
-	FILE *file;
+TMatrix* mx_from_file(char* filename) {
+	FILE* file;
 	int colCount, rowCount;
 	int n;
 	int i, j;
 	double value;
-	TMatrix *M;
+	TMatrix* M;
 
 	file = fopen("C:/Users/123/Desktop/input.txt", "rt");
 
@@ -27,14 +23,14 @@ TMatrix *mx_from_file(char *filename) {
 
 	M->m = colCount;
 	M->n = rowCount;
-	M->a = (double*)malloc(sizeof(double)*colCount*rowCount);
+	M->a = (double*)malloc(sizeof(double) * colCount * rowCount);
 
 	for (i = 0; i < rowCount; i++)
 	{
 		for (j = 0; j < colCount; j++)
 		{
 			fscanf(file, "%lf", &value);
-//print intermediate resulst only in debug configuration
+			//print intermediate resulst only in debug configuration
 #ifdef _DEBUG
 			printf("%lf ", value);
 #endif
@@ -53,8 +49,8 @@ TMatrix *mx_from_file(char *filename) {
 
 }
 
-int main(int argc, char **argv) {
-	TMatrix *m;
+int main(int argc, char** argv) {
+	TMatrix* m;
 
 	if (argc != 2) {
 		printf("Usage: .exe <input.txt>\n");
@@ -64,6 +60,6 @@ int main(int argc, char **argv) {
 		printf("Cannot read file %s\n", argv[1]);
 	}
 
-    mx_det(N);
+	mx_det(m);
 	mx_free(m);
 }
